@@ -1,25 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 import logo from './logo.svg';
+import { ExchangeHouseDataStore } from './data/DataStore';
+import { Provider} from 'react-redux';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { ExchangeHouseConnector } from './exchangeHouse/ExchangeHouseConnector'
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={ExchangeHouseDataStore}>
+      <Router>
+        <Switch>
+          <Route path="/exhouse" component={ExchangeHouseConnector} />
+          <Redirect to="/exhouse" />
+        </Switch>
+      </Router>
+    </Provider>
   );
 }
 
