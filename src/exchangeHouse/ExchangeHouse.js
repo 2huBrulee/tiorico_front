@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { TypeNavigation } from './TypeNavigation';
 import { TransactionList } from './TransactionList';
+import { Link } from 'react-router-dom';
 
 export class ExchangeHouse extends Component {
 
@@ -16,10 +17,17 @@ export class ExchangeHouse extends Component {
                 <div className="col-3 p-2">
                     <TypeNavigation baseUrl="/exhouse/transactions"
                         types={ this.props.types } />
+                    <div>
+                        <Link className="btn btn-primary m-1" to="/exhouse/new">
+                            Nueva transaccion
+                        </Link>
+                    </div>
                 </div>
                 <div className="col-9 p-2">
                     <TransactionList transactions={ this.props.transactions } />
                 </div>
+            </div>
+            <div>
             </div>
         </div>
     }

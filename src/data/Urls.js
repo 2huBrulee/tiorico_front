@@ -4,5 +4,5 @@ const protocol = "https";
 const hostname = "tiorico.herokuapp.com";
 
 export const RestUrls = {
-    [DataTypes.TRANSACTIONS]: `${protocol}://${hostname}/api/v1/transactions?idHouse=1`
+    [DataTypes.TRANSACTIONS]: `${protocol}://${hostname}/api/v1/transactions`
 }

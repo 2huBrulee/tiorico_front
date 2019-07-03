@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { loadTransactions } from '../data/ActionCreators';
+import { loadTransactions, createTransaction } from '../data/ActionCreators';
 import { DataTypes } from '../data/Types';
 import { ExchangeHouse } from './ExchangeHouse';
+import { NewTransaction} from './NewTransaction';
 
 const mapStateToProps = (dataStore) => ({
     ...dataStore
 })
 
 const mapDispatchToProps = {
-    loadTransactions
+    loadTransactions,
+    createTransaction
 }
 
 const filterTransactions = (transactions = [], type) =>
@@ -29,12 +31,15 @@ export const ExchangeHouseConnector = connect(mapStateToProps,mapDispatchToProps
                         <ExchangeHouse {...this.props} {...routeProps} types={["COMPRAR", "VENDER"]}
                             transactions={filterTransactions(this.props.transactions, routeProps.match.params.type)}/>
                     }/>
+                <Route path="/exhouse/new"
+                    render={ routeProps => 
+                        <NewTransaction {...this.props} {...routeProps}/>} />
                 <Redirect to="/exhouse/transactions" />
             </Switch>
         }
 
         componentDidMount() {
-            this.props.loadTransactions(DataTypes.TRANSACTIONS);            
+            this.props.loadTransactions(DataTypes.TRANSACTIONS,{idHouse: 1});            
         }
     }
 )

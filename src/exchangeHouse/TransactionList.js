@@ -18,7 +18,7 @@ export class TransactionList extends Component {
                 <div>
                     {transaction.mountInt + " A " + transaction.mountOut}
                 </div>
-                <h5></h5>
+                <span></span>
             </div>
         );
     }
