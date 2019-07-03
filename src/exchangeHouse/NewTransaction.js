@@ -7,20 +7,27 @@ export class NewTransaction extends Component {
         super(...props);
         this.defaultAttrs = { type: "text", required: true};
         this.formModel = [
-            {label: "idUser"},
-            {label: "idCoinIn"},
-            {label: "idCoinOut"},
-            {label: "clientName"},
-            {label: "clientAddress"},
-            {label: "clientDocumentType"},
-            {label: "clientDocumentNumber"},
-            {label: "transactionType"},
-            {label: "quantity"}
+            {label: "Nombre"},
+            {label: "Direccion"},
+            {label: "DNI"},
+            {label: "tipo"},
+            {label: "cantidad"}
         ]
     }
 
     handleSubmit = (formData) => {
-        this.props.createTransaction(formData);
+        let newTransactionData = {
+            idUser: "12",
+            idCoinIn: "1",
+            idCoinOut: "2",
+            clientName: formData.Nombre,
+            clientAddress: formData.Direccion,
+            clientDocumentType:"DNI",
+            clientDocumentNumber: formData.DNI,
+            transactionType: formData.tipo,
+            quantity: formData.cantidad
+        };
+        this.props.createTransaction(newTransactionData);
         this.props.history.push("/exhouse/transactions");
     }
 
